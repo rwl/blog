@@ -1,0 +1,37 @@
+---
+layout: page
+title: WebLog
+tagline: Smart-Grid Software Engineering
+---
+{% include JB/setup %}
+
+<div class="row">
+
+<div class="span9">
+
+{% assign posts = site.posts %}
+{% assign listing_limit = 5 %}
+{% for post in posts limit: listing_limit %}
+  <h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h3>
+
+  <p>Posted on {{ post.date | date_to_string }}
+  {% unless no_category %}
+    {% if post.category %}
+      in <a href="{{ post.category }}">{{ BASE_PATH }}/{{ post.category | slugize }}</a>
+    {% endif %}
+  {% endunless %}
+  </p>
+
+  <p>{{ post.content | strip_html | truncatewords: 75 }}</p>
+
+  <a href="{{ post.url }}">Read more...</a>
+
+{% endfor %}
+
+</div>
+
+<div class="span3">
+{% include projects.html %}
+</div>
+
+</div>
